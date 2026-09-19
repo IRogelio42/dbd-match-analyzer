@@ -5,6 +5,27 @@ import cv2
 from vision import get_region
 
 
+class Generators:
+
+    def __init__(self):
+        self.current = 5
+        self.size = 0
+        self.update()
+
+    def add_new(self, generator):
+        if generator is not None:
+            cv2.imwrite("../data/templates/Generators/GenState" + str(self.size) + ".png", generator)
+            self.size += 1
+
+    def update(self):
+        while True:
+            generator = cv2.imread("../data/templates/Generators/GenState" + str(self.size) + ".png")
+            if generator is not None:
+                self.size += 1
+            else:
+                break
+
+
 def detect_generators(image):
     generator_region = get_region(
         image,
@@ -13,5 +34,4 @@ def detect_generators(image):
         119,
         62
     )
-    cv2.imwrite("./temp/preidentify_gen.png", generator_region) #get image
     return generator_region # currently: return region, may be return state
