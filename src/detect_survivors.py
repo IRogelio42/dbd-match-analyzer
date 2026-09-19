@@ -43,6 +43,9 @@ class Survivors:
                     print("New Survivor Added.")
                     self.addNew(vors)
 
+    #init, look through all survs to find 4, once 4 are find, config_table (to) limit searches to those 4
+    #survivors have 5 main states, healthy, injured*, down, hooked, dead*
+    #survivors at beginning may be healthy or injured, search through all to init,
     def identifySurv(self): #later dev, identify each of 4 survivors to template
         for vor in self.currentSurvs: #currentSurvs holds images of survivors, match to template image, similar to search
             found = False
